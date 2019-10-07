@@ -9,7 +9,6 @@ function App() {
       <MemeGenerator />
     </div>
   )
-
 }
 
 export default App;
