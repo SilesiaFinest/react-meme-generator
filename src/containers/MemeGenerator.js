@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+// state declaration
 class MemeGenerator extends Component {
     constructor() {
         super()
@@ -10,7 +10,9 @@ class MemeGenerator extends Component {
             allMemeImgs: []
         }
     }
-
+// componentDM to fetch data asap, then received data to be .json()
+// then deconstruct = ( extract memes array from data object)
+// save that array to allMemeImgs - empty array declared in state above
     componentDidMount() {
         fetch('https://api.imgflip.com/get_memes')
             .then(response => response.json())
@@ -19,12 +21,15 @@ class MemeGenerator extends Component {
                 this.setState({ allMemeImgs: memes })
             })
     }
-
+// handle change in text input fields - deconstruct for name and value
+// top and bottom text name and update the state
     handleChange = (event) => {
         const { name, value } = event.target;
         this.setState({ [name]: value})
     }
-
+// default button function in <form> is to submit =  preventDefault would stop reloading the page
+// create a random number and use is a [index] of memes in array allMemesImgs
+// extract .url of that random img and update the state with new url address
     handleSubmit = (event) => {
         event.preventDefault()
         const randNum = Math.floor(Math.random() * this.state.allMemeImgs.length)
